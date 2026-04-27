@@ -34,6 +34,12 @@ mes-docker/
 - `KEYCLOAK_CLIENT_ID` — Keycloak client ID passed to both backend (audience check) and frontend (OIDC config)
 - `HTTP_PORT` — host port for nginx (default 80)
 
+## Keycloak requirements (what must exist before the stack starts)
+- Realm with client `mes-frontend` (public, standard flow, correct redirect URIs)
+- Two protocol mappers on `mes-frontend`: **Audience** (`mes-frontend`) and **Group Membership** (`groups`, full path OFF)
+- Groups: `mes-admins` (→ admin role) and `mes-viewers` (→ viewer role)
+- See `keycloak-setup/realm-export.json` for the canonical config and `mes-backend/README.md` for step-by-step instructions
+
 ## Networking
 - `mes-backend` has `extra_hosts: host.docker.internal:host-gateway` so it can reach host-exposed services (Postgres on 5432, Keycloak on 8080).
 - `mes-frontend` (nginx) proxies `/api/` and `/hubs/` to `http://mes-backend:5000` over the internal Docker network. The browser never calls the backend directly.
