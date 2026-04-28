@@ -32,7 +32,6 @@ mes-docker/
 - `KEYCLOAK_AUTHORITY` — public Keycloak issuer URL (string-compared against JWT `iss`; no DNS needed)
 - `KEYCLOAK_BACKCHANNEL_AUTHORITY` — internal Keycloak URL the backend fetches JWKS from; must be reachable from the container
 - `KEYCLOAK_CLIENT_ID` — Keycloak client ID passed to both backend (audience check) and frontend (OIDC config)
-- `KEYCLOAK_CLIENT_SECRET` — client secret for the `mes-frontend` confidential client; used by the frontend during authorization code exchange and stored in the backend config
 - `HTTP_PORT` — host port for nginx (default 80)
 
 ## Keycloak requirements (what must exist before the stack starts)
