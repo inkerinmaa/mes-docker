@@ -30,6 +30,7 @@ services:
       Authentication__Authority:             ${KEYCLOAK_AUTHORITY}
       Authentication__BackchannelAuthority:  ${KEYCLOAK_BACKCHANNEL_AUTHORITY}
       Authentication__Audience:             ${KEYCLOAK_CLIENT_ID}
+      Authentication__ClientSecret:         ${KEYCLOAK_CLIENT_SECRET}
       Redis__ConnectionString: redis:6379
     depends_on:
       redis:
@@ -43,8 +44,9 @@ services:
     ports:
       - "${HTTP_PORT:-80}:80"
     environment:
-      KEYCLOAK_AUTHORITY: ${KEYCLOAK_AUTHORITY}
-      KEYCLOAK_CLIENT_ID: ${KEYCLOAK_CLIENT_ID}
+      KEYCLOAK_AUTHORITY:       ${KEYCLOAK_AUTHORITY}
+      KEYCLOAK_CLIENT_ID:       ${KEYCLOAK_CLIENT_ID}
+      KEYCLOAK_CLIENT_SECRET:   ${KEYCLOAK_CLIENT_SECRET}
     depends_on:
       - mes-backend
 
