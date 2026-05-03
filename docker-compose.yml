@@ -31,6 +31,11 @@ services:
       Authentication__BackchannelAuthority:  ${KEYCLOAK_BACKCHANNEL_AUTHORITY}
       Authentication__Audience:             ${KEYCLOAK_CLIENT_ID}
       Redis__ConnectionString: redis:6379
+      ClickHouse__Url:      http://host.docker.internal:8123
+      ClickHouse__Database: ${CLICKHOUSE_DATABASE:-historian}
+      ClickHouse__Username: ${CLICKHOUSE_USERNAME:-nik}
+      ClickHouse__Password: ${CLICKHOUSE_PASSWORD:-mysecretpassword}
+      Nats__Url:            nats://host.docker.internal:4222
     depends_on:
       redis:
         condition: service_healthy
